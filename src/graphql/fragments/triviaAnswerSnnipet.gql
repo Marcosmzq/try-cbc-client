@@ -1,0 +1,8 @@
+fragment TriviaAnswerSnippet on Answer {
+  id
+  created_at
+  updated_at
+  statement
+  isTrue
+  type
+}

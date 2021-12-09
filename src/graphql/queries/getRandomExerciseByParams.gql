@@ -1,0 +1,8 @@
+query GetRandomTriviaByParams($exam: ExamList!, $subject: SubjectList!) {
+  getRandomTriviaByParams(exam: $exam, subject: $subject) {
+    ...TriviaSnippet
+    answers {
+      ...TriviaAnswerSnippet
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query GetExerciseByID($id: Int!) {
+  findTriviaByID(id: $id) {
+    ...TriviaSnippet
+    answers {
+      ...TriviaAnswerSnippet
+    }
+  }
+}

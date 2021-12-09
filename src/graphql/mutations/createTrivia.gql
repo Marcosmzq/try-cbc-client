@@ -1,0 +1,17 @@
+mutation CreateTrivia(
+  $subject: SubjectList!
+  $exam: ExamList!
+  $statement: String!
+  $feedback: String
+) {
+  createTrivia(
+    createTriviaInput: {
+      subject: $subject
+      exam: $exam
+      statement: $statement
+      feedback: $feedback
+    }
+  ) {
+    ...TriviaSnippet
+  }
+}

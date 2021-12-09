@@ -1,0 +1,3 @@
+mutation UpgradeUserAccount($userID: Float!) {
+  upgradeUserAccount(userID: $userID)
+}

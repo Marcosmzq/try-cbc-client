@@ -1,0 +1,9 @@
+fragment TriviaSnippet on Trivia {
+  id
+  created_at
+  updated_at
+  statement
+  exam
+  subject
+  feedback
+}

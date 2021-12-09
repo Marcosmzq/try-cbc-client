@@ -1,0 +1,8 @@
+query GetRandomTriviaBySubject($subject: SubjectList!) {
+  getRandomTriviaBySubject(subject: $subject) {
+    ...TriviaSnippet
+    answers {
+      ...TriviaAnswerSnippet
+    }
+  }
+}
