@@ -54,8 +54,8 @@ export const LandingPageDefaultTemplate: React.FC<LandingPageDefaultTemplateProp
               desc: "Todos los ejercicios están enfocados para parciales del CBC",
             },
             {
-              title: "Variadad de materias",
-              desc: "Tenemos la mayoria de materias del CBC disponibles para que estudies",
+              title: "Dinamismo",
+              desc: "Estudia de una forma más dinámica con nuestra herramienta.",
             },
             {
               title: "Distintos ejercicios",
