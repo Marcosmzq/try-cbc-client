@@ -35,7 +35,6 @@ export const UserProfileDefaultTemplate: React.FC<UserProfileDefaultTemplateProp
             desc="Bienvenido, acá podes ver información sobre tu cuenta, cambiar la contraseña y cambiar el tema entre otras cosas."
             username={user.username}
             userRole={user.role}
-            userID={user.id}
           />
           <Box my={8} w="100%">
             <Heading my={4} textAlign="center" as="h3" variant="h3">
