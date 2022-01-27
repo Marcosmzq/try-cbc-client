@@ -1,10 +1,9 @@
-import { Container, VStack } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import { SectionHeaderDefault } from "../../molecules/section-header/default";
 import { SelectExerciseDefault } from "../../organisms/select-exercise/default";
 import { StepsWithLine } from "../../organisms/steps/withLine";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/userAuth";
-import { AlertDefault } from "../../molecules/alert/default";
 
 interface HomePageTemplateProps {}
 
