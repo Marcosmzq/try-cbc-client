@@ -35,17 +35,6 @@ export const HomePageTemplate: React.FC<HomePageTemplateProps> = ({}) => {
           },
         ]}
       />
-      <VStack spacing={4}>
-        <AlertDefault
-          alertStatus="info"
-          text="Estamos trabajando para agregar más materias y más contenido. Recien está empezando este projecto. :D"
-        />
-        <AlertDefault
-          alertStatus="info"
-          text="Podés probar la idea detrás de esta plataforma con las materias gratis, estas tienen poco contenido ya que por ahora son para que puedas ver la idea detrás de esta plataforma, luego le agregaremos contenido. Para acceder a las demás materias tenes que hacerte premiun, de esta forma desbloqueas ese contenido exclusivo y nos apoyas para que siga creciendo la plataforma."
-        />
-      </VStack>
-
       <SelectExerciseDefault />
     </Container>
   );
