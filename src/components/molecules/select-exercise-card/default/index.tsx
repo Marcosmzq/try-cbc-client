@@ -1,39 +1,41 @@
 import { ArrowRightIcon } from "@chakra-ui/icons";
 import { Box, Text, Heading, Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 interface SelectExerciseCardProps {
-  subject: string;
+  title: string;
   desc: string;
-  exFormat: string;
   isFreeContent: boolean;
+  btnText: string;
+  btnOnClick: () => void;
 }
 
 export const SelectExerciseCard: React.FC<SelectExerciseCardProps> = ({
-  subject,
+  title,
   desc,
-  exFormat,
   isFreeContent,
+  btnText,
+  btnOnClick,
 }) => {
-  const router = useRouter();
   return (
     <Box p={8} w="100%">
       <Text variant="badge">{isFreeContent ? "GRATIS" : "PREMIUN"}</Text>
       <Box py={4}>
         <Heading as="h5" variant="h5">
-          {subject}
+          {title}
         </Heading>
         <Text>{desc}</Text>
       </Box>
       <Button
-        onClick={() =>
-          router.push(`/exercise?subject=${subject}&format=${exFormat}`)
-        }
+        as={motion.button}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => btnOnClick()}
         rightIcon={<ArrowRightIcon />}
         color="primary"
         variant="link"
       >
-        empezar a aprender
+        {btnText}
       </Button>
     </Box>
   );

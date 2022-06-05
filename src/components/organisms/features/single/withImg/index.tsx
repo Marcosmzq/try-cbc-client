@@ -16,13 +16,7 @@ export const FeatureSingleWithImg: React.FC<FeatureSingleWithImgProps> = ({
   imgSrc,
 }) => {
   return (
-    <Flex
-      my={12}
-      py={[6, 8]}
-      justify="center"
-      align="center"
-      flexDir={["column", "row"]}
-    >
+    <Flex justify="center" align="center" flexDir={["column", "row"]}>
       <Center mx={8} p={4} w={["100%", "540px"]} borderRadius="8px">
         <Image width="360px" height="540px" alt={imgAlt} src={imgSrc} />
       </Center>

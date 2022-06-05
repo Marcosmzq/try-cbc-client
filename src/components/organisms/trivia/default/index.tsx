@@ -1,11 +1,11 @@
 import { Center, Button, useBoolean } from "@chakra-ui/react";
-import { GetRandomTriviaBySubjectQuery } from "../../../../graphql/generated/graphql";
+import { GetRandomTriviaByParamsQuery } from "../../../../graphql/generated/graphql";
 import { TriviaAnswer } from "../../../molecules/trivia-content/trivia-answer";
 import { TriviaBody } from "../../../molecules/trivia-content/trivia-body";
 import { TriviaHeader } from "../../../molecules/trivia-content/trivia-header";
 
 interface TriviaDefaultProps {
-  triviaExercise: GetRandomTriviaBySubjectQuery;
+  triviaExercise: GetRandomTriviaByParamsQuery;
   refetchExercise: () => void;
 }
 
@@ -15,7 +15,7 @@ export const TriviaDefault: React.FC<TriviaDefaultProps> = ({
 }) => {
   const [active, setActive] = useBoolean(false);
   const { statement, feedback, answers } =
-    triviaExercise.getRandomTriviaBySubject;
+    triviaExercise.getRandomTriviaByParams;
 
   return (
     <>

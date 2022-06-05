@@ -2,10 +2,10 @@ mutation CreateTriviaAnswer(
   $triviaID: Int!
   $statement: String!
   $isTrue: Boolean!
-  $type: AnswerType!
+  $type: TriviasAnswerType!
 ) {
-  createAnswer(
-    createAnswerInput: {
+  createTriviaAnswer(
+    createTriviasAnswerInput: {
       trivia_id: $triviaID
       statement: $statement
       isTrue: $isTrue

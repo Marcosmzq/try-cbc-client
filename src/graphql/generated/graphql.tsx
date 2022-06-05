@@ -14,23 +14,6 @@ export type Scalars = {
   Float: number;
 };
 
-export type Answer = {
-  __typename?: 'Answer';
-  created_at: Scalars['String'];
-  id: Scalars['Int'];
-  isTrue: Scalars['Boolean'];
-  statement: Scalars['String'];
-  trivia: Trivia;
-  trivia_id: Scalars['Int'];
-  type: AnswerType;
-  updated_at: Scalars['String'];
-};
-
-export enum AnswerType {
-  Answer = 'ANSWER',
-  Justification = 'JUSTIFICATION'
-}
-
 export type ChangePasswordInput = {
   confirmNewPassword: Scalars['String'];
   currentPassword: Scalars['String'];
@@ -43,18 +26,25 @@ export type ChangeRoleInput = {
   userID: Scalars['Int'];
 };
 
-export type CreateAnswerInput = {
-  isTrue: Scalars['Boolean'];
-  statement: Scalars['String'];
-  trivia_id: Scalars['Int'];
-  type: AnswerType;
+export type CreateSubjectInput = {
+  isPremium: Scalars['Boolean'];
+  name: Scalars['String'];
 };
 
 export type CreateTriviaInput = {
   exam: ExamList;
   feedback?: Maybe<Scalars['String']>;
+  source: Scalars['String'];
   statement: Scalars['String'];
-  subject: SubjectList;
+  subject_id: Scalars['Int'];
+  type: TriviaType;
+};
+
+export type CreateTriviasAnswerInput = {
+  isTrue: Scalars['Boolean'];
+  statement: Scalars['String'];
+  trivia_id: Scalars['Int'];
+  type: TriviasAnswerType;
 };
 
 export type CreateUserInput = {
@@ -79,18 +69,21 @@ export type Mutation = {
   __typename?: 'Mutation';
   changePassword: User;
   changeUserRole: User;
-  createAnswer: Answer;
+  createSubject: Subject;
   createTrivia: Trivia;
+  createTriviaAnswer: TriviasAnswer;
   createUser: Scalars['String'];
-  deleteAnswer: Answer;
+  deleteSubject: Subject;
   deleteTrivia: Trivia;
+  deleteTriviaAnswer: TriviasAnswer;
   deleteUserByID: Scalars['Boolean'];
   forgotPassword: Scalars['Boolean'];
   getInitPoint: Scalars['String'];
   loginUser: Scalars['String'];
   recoveryPassword: User;
-  updateAnswer: Answer;
+  updateSubject: Subject;
   updateTrivia: Trivia;
+  updateTriviaAnswer: TriviasAnswer;
   upgradeUserAccount: Scalars['Boolean'];
 };
 
@@ -105,8 +98,8 @@ export type MutationChangeUserRoleArgs = {
 };
 
 
-export type MutationCreateAnswerArgs = {
-  createAnswerInput: CreateAnswerInput;
+export type MutationCreateSubjectArgs = {
+  createSubjectInput: CreateSubjectInput;
 };
 
 
@@ -115,17 +108,27 @@ export type MutationCreateTriviaArgs = {
 };
 
 
+export type MutationCreateTriviaAnswerArgs = {
+  createTriviasAnswerInput: CreateTriviasAnswerInput;
+};
+
+
 export type MutationCreateUserArgs = {
   createUserInput: CreateUserInput;
 };
 
 
-export type MutationDeleteAnswerArgs = {
+export type MutationDeleteSubjectArgs = {
   id: Scalars['Int'];
 };
 
 
 export type MutationDeleteTriviaArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationDeleteTriviaAnswerArgs = {
   id: Scalars['Int'];
 };
 
@@ -155,13 +158,18 @@ export type MutationRecoveryPasswordArgs = {
 };
 
 
-export type MutationUpdateAnswerArgs = {
-  updateAnswerInput: UpdateAnswerInput;
+export type MutationUpdateSubjectArgs = {
+  updateSubjectInput: UpdateSubjectInput;
 };
 
 
 export type MutationUpdateTriviaArgs = {
   updateTriviaInput: UpdateTriviaInput;
+};
+
+
+export type MutationUpdateTriviaAnswerArgs = {
+  updateTriviasAnswerInput: UpdateTriviasAnswerInput;
 };
 
 
@@ -172,15 +180,15 @@ export type MutationUpgradeUserAccountArgs = {
 export type Query = {
   __typename?: 'Query';
   checkIfUserHasApprovedPayments: Scalars['Boolean'];
-  findAllAnswers: Array<Answer>;
+  findAllSubjects: Array<Subject>;
   findAllTrivias: Array<Trivia>;
+  findAllTriviasAnswers: Array<TriviasAnswer>;
   findAllUsers: Array<User>;
-  findAnswerByID: Answer;
+  findSubjectByID: Subject;
   findTriviaByID: Trivia;
+  findTriviasAnswerByID: TriviasAnswer;
   findUserByID: User;
   getRandomTriviaByParams: Trivia;
-  getRandomTriviaBySubject: Trivia;
-  getTriviaQuiz: Array<Trivia>;
 };
 
 
@@ -189,12 +197,17 @@ export type QueryCheckIfUserHasApprovedPaymentsArgs = {
 };
 
 
-export type QueryFindAnswerByIdArgs = {
+export type QueryFindSubjectByIdArgs = {
   id: Scalars['Int'];
 };
 
 
 export type QueryFindTriviaByIdArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryFindTriviasAnswerByIdArgs = {
   id: Scalars['Int'];
 };
 
@@ -205,20 +218,9 @@ export type QueryFindUserByIdArgs = {
 
 
 export type QueryGetRandomTriviaByParamsArgs = {
-  exam: ExamList;
-  subject: SubjectList;
-};
-
-
-export type QueryGetRandomTriviaBySubjectArgs = {
-  subject: SubjectList;
-};
-
-
-export type QueryGetTriviaQuizArgs = {
-  exam: ExamList;
-  limit?: Maybe<Scalars['Int']>;
-  subject: SubjectList;
+  exam?: Maybe<ExamList>;
+  subject_id: Scalars['Int'];
+  type: TriviaType;
 };
 
 export type RecoveryPasswordInput = {
@@ -227,37 +229,75 @@ export type RecoveryPasswordInput = {
   userToken: Scalars['String'];
 };
 
-export enum SubjectList {
-  Icse = 'ICSE',
-  Ipc = 'IPC'
-}
+export type Subject = {
+  __typename?: 'Subject';
+  created_at: Scalars['String'];
+  id: Scalars['Int'];
+  isPremium: Scalars['Boolean'];
+  name: Scalars['String'];
+  trivias: Array<Trivia>;
+  updated_at: Scalars['String'];
+};
 
 export type Trivia = {
   __typename?: 'Trivia';
-  answers: Array<Answer>;
+  answers: Array<TriviasAnswer>;
   created_at: Scalars['String'];
   exam: ExamList;
   feedback?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
+  source: Scalars['String'];
   statement: Scalars['String'];
-  subject: SubjectList;
+  subject: Subject;
+  subject_id: Scalars['Int'];
+  type: TriviaType;
   updated_at: Scalars['String'];
 };
 
-export type UpdateAnswerInput = {
+export enum TriviaType {
+  Flashcard = 'FLASHCARD',
+  Trivia = 'TRIVIA'
+}
+
+export type TriviasAnswer = {
+  __typename?: 'TriviasAnswer';
+  created_at: Scalars['String'];
   id: Scalars['Int'];
-  isTrue?: Maybe<Scalars['Boolean']>;
-  statement?: Maybe<Scalars['String']>;
-  trivia_id?: Maybe<Scalars['Int']>;
-  type?: Maybe<AnswerType>;
+  isTrue: Scalars['Boolean'];
+  statement: Scalars['String'];
+  trivia: Trivia;
+  trivia_id: Scalars['Int'];
+  type: TriviasAnswerType;
+  updated_at: Scalars['String'];
+};
+
+export enum TriviasAnswerType {
+  Answer = 'ANSWER',
+  Justification = 'JUSTIFICATION'
+}
+
+export type UpdateSubjectInput = {
+  id: Scalars['Int'];
+  isPremium?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type UpdateTriviaInput = {
   exam?: Maybe<ExamList>;
   feedback?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
+  source?: Maybe<Scalars['String']>;
   statement?: Maybe<Scalars['String']>;
-  subject?: Maybe<SubjectList>;
+  subject_id?: Maybe<Scalars['Int']>;
+  type?: Maybe<TriviaType>;
+};
+
+export type UpdateTriviasAnswerInput = {
+  id: Scalars['Int'];
+  isTrue?: Maybe<Scalars['Boolean']>;
+  statement?: Maybe<Scalars['String']>;
+  trivia_id?: Maybe<Scalars['Int']>;
+  type?: Maybe<TriviasAnswerType>;
 };
 
 export type User = {
@@ -276,9 +316,11 @@ export enum UserRole {
   PremiumUser = 'PREMIUM_USER'
 }
 
-export type TriviaAnswerSnippetFragment = { __typename?: 'Answer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: AnswerType };
+export type SubjectSnnipetFragment = { __typename?: 'Subject', id: number, name: string, isPremium: boolean, created_at: string, updated_at: string };
 
-export type TriviaSnippetFragment = { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, subject: SubjectList, feedback?: string | null | undefined };
+export type TriviaAnswerSnippetFragment = { __typename?: 'TriviasAnswer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: TriviasAnswerType };
+
+export type TriviaSnippetFragment = { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, source: string, type: TriviaType, feedback?: string | null | undefined };
 
 export type UserSnippetFragment = { __typename?: 'User', id: number, username: string, email: string, created_at: string, updated_at: string, role: UserRole };
 
@@ -295,21 +337,23 @@ export type CreateTriviaAnswerMutationVariables = Exact<{
   triviaID: Scalars['Int'];
   statement: Scalars['String'];
   isTrue: Scalars['Boolean'];
-  type: AnswerType;
+  type: TriviasAnswerType;
 }>;
 
 
-export type CreateTriviaAnswerMutation = { __typename?: 'Mutation', createAnswer: { __typename?: 'Answer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: AnswerType } };
+export type CreateTriviaAnswerMutation = { __typename?: 'Mutation', createTriviaAnswer: { __typename?: 'TriviasAnswer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: TriviasAnswerType } };
 
 export type CreateTriviaMutationVariables = Exact<{
-  subject: SubjectList;
+  subjectID: Scalars['Int'];
   exam: ExamList;
   statement: Scalars['String'];
   feedback?: Maybe<Scalars['String']>;
+  triviaType: TriviaType;
+  source: Scalars['String'];
 }>;
 
 
-export type CreateTriviaMutation = { __typename?: 'Mutation', createTrivia: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, subject: SubjectList, feedback?: string | null | undefined } };
+export type CreateTriviaMutation = { __typename?: 'Mutation', createTrivia: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, source: string, type: TriviaType, feedback?: string | null | undefined } };
 
 export type ForgotPasswordMutationVariables = Exact<{
   email: Scalars['String'];
@@ -357,22 +401,21 @@ export type GetExerciseByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetExerciseByIdQuery = { __typename?: 'Query', findTriviaByID: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, subject: SubjectList, feedback?: string | null | undefined, answers: Array<{ __typename?: 'Answer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: AnswerType }> } };
+export type GetExerciseByIdQuery = { __typename?: 'Query', findTriviaByID: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, source: string, type: TriviaType, feedback?: string | null | undefined, answers: Array<{ __typename?: 'TriviasAnswer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: TriviasAnswerType }>, subject: { __typename?: 'Subject', id: number, name: string, isPremium: boolean, created_at: string, updated_at: string } } };
 
 export type GetRandomTriviaByParamsQueryVariables = Exact<{
-  exam: ExamList;
-  subject: SubjectList;
+  exam?: Maybe<ExamList>;
+  subjectID: Scalars['Int'];
+  triviaType: TriviaType;
 }>;
 
 
-export type GetRandomTriviaByParamsQuery = { __typename?: 'Query', getRandomTriviaByParams: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, subject: SubjectList, feedback?: string | null | undefined, answers: Array<{ __typename?: 'Answer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: AnswerType }> } };
+export type GetRandomTriviaByParamsQuery = { __typename?: 'Query', getRandomTriviaByParams: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, source: string, type: TriviaType, feedback?: string | null | undefined, answers: Array<{ __typename?: 'TriviasAnswer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: TriviasAnswerType }>, subject: { __typename?: 'Subject', id: number, name: string, isPremium: boolean, created_at: string, updated_at: string } } };
 
-export type GetRandomTriviaBySubjectQueryVariables = Exact<{
-  subject: SubjectList;
-}>;
+export type GetSubjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRandomTriviaBySubjectQuery = { __typename?: 'Query', getRandomTriviaBySubject: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, statement: string, exam: ExamList, subject: SubjectList, feedback?: string | null | undefined, answers: Array<{ __typename?: 'Answer', id: number, created_at: string, updated_at: string, statement: string, isTrue: boolean, type: AnswerType }> } };
+export type GetSubjectsQuery = { __typename?: 'Query', findAllSubjects: Array<{ __typename?: 'Subject', id: number, name: string, isPremium: boolean, created_at: string, updated_at: string }> };
 
 export type GetUserByIdQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -388,8 +431,17 @@ export type UpgradeUserAccountMutationVariables = Exact<{
 
 export type UpgradeUserAccountMutation = { __typename?: 'Mutation', upgradeUserAccount: boolean };
 
+export const SubjectSnnipetFragmentDoc = gql`
+    fragment SubjectSnnipet on Subject {
+  id
+  name
+  isPremium
+  created_at
+  updated_at
+}
+    `;
 export const TriviaAnswerSnippetFragmentDoc = gql`
-    fragment TriviaAnswerSnippet on Answer {
+    fragment TriviaAnswerSnippet on TriviasAnswer {
   id
   created_at
   updated_at
@@ -405,7 +457,8 @@ export const TriviaSnippetFragmentDoc = gql`
   updated_at
   statement
   exam
-  subject
+  source
+  type
   feedback
 }
     `;
@@ -457,9 +510,9 @@ export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswo
 export type ChangePasswordMutationResult = Apollo.MutationResult<ChangePasswordMutation>;
 export type ChangePasswordMutationOptions = Apollo.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
 export const CreateTriviaAnswerDocument = gql`
-    mutation CreateTriviaAnswer($triviaID: Int!, $statement: String!, $isTrue: Boolean!, $type: AnswerType!) {
-  createAnswer(
-    createAnswerInput: {trivia_id: $triviaID, statement: $statement, isTrue: $isTrue, type: $type}
+    mutation CreateTriviaAnswer($triviaID: Int!, $statement: String!, $isTrue: Boolean!, $type: TriviasAnswerType!) {
+  createTriviaAnswer(
+    createTriviasAnswerInput: {trivia_id: $triviaID, statement: $statement, isTrue: $isTrue, type: $type}
   ) {
     ...TriviaAnswerSnippet
   }
@@ -495,9 +548,9 @@ export type CreateTriviaAnswerMutationHookResult = ReturnType<typeof useCreateTr
 export type CreateTriviaAnswerMutationResult = Apollo.MutationResult<CreateTriviaAnswerMutation>;
 export type CreateTriviaAnswerMutationOptions = Apollo.BaseMutationOptions<CreateTriviaAnswerMutation, CreateTriviaAnswerMutationVariables>;
 export const CreateTriviaDocument = gql`
-    mutation CreateTrivia($subject: SubjectList!, $exam: ExamList!, $statement: String!, $feedback: String) {
+    mutation CreateTrivia($subjectID: Int!, $exam: ExamList!, $statement: String!, $feedback: String, $triviaType: TriviaType!, $source: String!) {
   createTrivia(
-    createTriviaInput: {subject: $subject, exam: $exam, statement: $statement, feedback: $feedback}
+    createTriviaInput: {subject_id: $subjectID, exam: $exam, statement: $statement, feedback: $feedback, type: $triviaType, source: $source}
   ) {
     ...TriviaSnippet
   }
@@ -518,10 +571,12 @@ export type CreateTriviaMutationFn = Apollo.MutationFunction<CreateTriviaMutatio
  * @example
  * const [createTriviaMutation, { data, loading, error }] = useCreateTriviaMutation({
  *   variables: {
- *      subject: // value for 'subject'
+ *      subjectID: // value for 'subjectID'
  *      exam: // value for 'exam'
  *      statement: // value for 'statement'
  *      feedback: // value for 'feedback'
+ *      triviaType: // value for 'triviaType'
+ *      source: // value for 'source'
  *   },
  * });
  */
@@ -706,10 +761,14 @@ export const GetExerciseByIdDocument = gql`
     answers {
       ...TriviaAnswerSnippet
     }
+    subject {
+      ...SubjectSnnipet
+    }
   }
 }
     ${TriviaSnippetFragmentDoc}
-${TriviaAnswerSnippetFragmentDoc}`;
+${TriviaAnswerSnippetFragmentDoc}
+${SubjectSnnipetFragmentDoc}`;
 
 /**
  * __useGetExerciseByIdQuery__
@@ -739,16 +798,20 @@ export type GetExerciseByIdQueryHookResult = ReturnType<typeof useGetExerciseByI
 export type GetExerciseByIdLazyQueryHookResult = ReturnType<typeof useGetExerciseByIdLazyQuery>;
 export type GetExerciseByIdQueryResult = Apollo.QueryResult<GetExerciseByIdQuery, GetExerciseByIdQueryVariables>;
 export const GetRandomTriviaByParamsDocument = gql`
-    query GetRandomTriviaByParams($exam: ExamList!, $subject: SubjectList!) {
-  getRandomTriviaByParams(exam: $exam, subject: $subject) {
+    query GetRandomTriviaByParams($exam: ExamList, $subjectID: Int!, $triviaType: TriviaType!) {
+  getRandomTriviaByParams(exam: $exam, subject_id: $subjectID, type: $triviaType) {
     ...TriviaSnippet
     answers {
       ...TriviaAnswerSnippet
     }
+    subject {
+      ...SubjectSnnipet
+    }
   }
 }
     ${TriviaSnippetFragmentDoc}
-${TriviaAnswerSnippetFragmentDoc}`;
+${TriviaAnswerSnippetFragmentDoc}
+${SubjectSnnipetFragmentDoc}`;
 
 /**
  * __useGetRandomTriviaByParamsQuery__
@@ -763,7 +826,8 @@ ${TriviaAnswerSnippetFragmentDoc}`;
  * const { data, loading, error } = useGetRandomTriviaByParamsQuery({
  *   variables: {
  *      exam: // value for 'exam'
- *      subject: // value for 'subject'
+ *      subjectID: // value for 'subjectID'
+ *      triviaType: // value for 'triviaType'
  *   },
  * });
  */
@@ -778,45 +842,40 @@ export function useGetRandomTriviaByParamsLazyQuery(baseOptions?: Apollo.LazyQue
 export type GetRandomTriviaByParamsQueryHookResult = ReturnType<typeof useGetRandomTriviaByParamsQuery>;
 export type GetRandomTriviaByParamsLazyQueryHookResult = ReturnType<typeof useGetRandomTriviaByParamsLazyQuery>;
 export type GetRandomTriviaByParamsQueryResult = Apollo.QueryResult<GetRandomTriviaByParamsQuery, GetRandomTriviaByParamsQueryVariables>;
-export const GetRandomTriviaBySubjectDocument = gql`
-    query GetRandomTriviaBySubject($subject: SubjectList!) {
-  getRandomTriviaBySubject(subject: $subject) {
-    ...TriviaSnippet
-    answers {
-      ...TriviaAnswerSnippet
-    }
+export const GetSubjectsDocument = gql`
+    query GetSubjects {
+  findAllSubjects {
+    ...SubjectSnnipet
   }
 }
-    ${TriviaSnippetFragmentDoc}
-${TriviaAnswerSnippetFragmentDoc}`;
+    ${SubjectSnnipetFragmentDoc}`;
 
 /**
- * __useGetRandomTriviaBySubjectQuery__
+ * __useGetSubjectsQuery__
  *
- * To run a query within a React component, call `useGetRandomTriviaBySubjectQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetRandomTriviaBySubjectQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetSubjectsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSubjectsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetRandomTriviaBySubjectQuery({
+ * const { data, loading, error } = useGetSubjectsQuery({
  *   variables: {
- *      subject: // value for 'subject'
  *   },
  * });
  */
-export function useGetRandomTriviaBySubjectQuery(baseOptions: Apollo.QueryHookOptions<GetRandomTriviaBySubjectQuery, GetRandomTriviaBySubjectQueryVariables>) {
+export function useGetSubjectsQuery(baseOptions?: Apollo.QueryHookOptions<GetSubjectsQuery, GetSubjectsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetRandomTriviaBySubjectQuery, GetRandomTriviaBySubjectQueryVariables>(GetRandomTriviaBySubjectDocument, options);
+        return Apollo.useQuery<GetSubjectsQuery, GetSubjectsQueryVariables>(GetSubjectsDocument, options);
       }
-export function useGetRandomTriviaBySubjectLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRandomTriviaBySubjectQuery, GetRandomTriviaBySubjectQueryVariables>) {
+export function useGetSubjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSubjectsQuery, GetSubjectsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetRandomTriviaBySubjectQuery, GetRandomTriviaBySubjectQueryVariables>(GetRandomTriviaBySubjectDocument, options);
+          return Apollo.useLazyQuery<GetSubjectsQuery, GetSubjectsQueryVariables>(GetSubjectsDocument, options);
         }
-export type GetRandomTriviaBySubjectQueryHookResult = ReturnType<typeof useGetRandomTriviaBySubjectQuery>;
-export type GetRandomTriviaBySubjectLazyQueryHookResult = ReturnType<typeof useGetRandomTriviaBySubjectLazyQuery>;
-export type GetRandomTriviaBySubjectQueryResult = Apollo.QueryResult<GetRandomTriviaBySubjectQuery, GetRandomTriviaBySubjectQueryVariables>;
+export type GetSubjectsQueryHookResult = ReturnType<typeof useGetSubjectsQuery>;
+export type GetSubjectsLazyQueryHookResult = ReturnType<typeof useGetSubjectsLazyQuery>;
+export type GetSubjectsQueryResult = Apollo.QueryResult<GetSubjectsQuery, GetSubjectsQueryVariables>;
 export const GetUserByIdDocument = gql`
     query GetUserByID($id: Int!) {
   findUserByID(id: $id) {

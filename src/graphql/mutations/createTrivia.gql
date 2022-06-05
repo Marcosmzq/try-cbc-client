@@ -1,15 +1,19 @@
 mutation CreateTrivia(
-  $subject: SubjectList!
+  $subjectID: Int!
   $exam: ExamList!
   $statement: String!
   $feedback: String
+  $triviaType: TriviaType!
+  $source: String!
 ) {
   createTrivia(
     createTriviaInput: {
-      subject: $subject
+      subject_id: $subjectID
       exam: $exam
       statement: $statement
       feedback: $feedback
+      type: $triviaType
+      source: $source
     }
   ) {
     ...TriviaSnippet

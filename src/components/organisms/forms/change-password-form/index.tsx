@@ -5,6 +5,7 @@ import { useChangePasswordMutation } from "../../../../graphql/generated/graphql
 import { AlertDefault } from "../../../molecules/alert/default";
 import { DisplayGraphQLErrorDefault } from "../../../molecules/display-error/graphql-error/default";
 import { FormFieldInput } from "../../../molecules/form-field/input";
+import { motion } from "framer-motion";
 
 type FormData = {
   currentPassword: string;
@@ -101,6 +102,9 @@ export const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({}) => {
           })}
         />
         <Button
+          as={motion.button}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           w={["100%", "sm"]}
           variant="primarySolid"
           isLoading={isSubmitting}

@@ -1,8 +1,5 @@
 import { VStack, Box, Text, Divider } from "@chakra-ui/react";
-import {
-  GetRandomTriviaByParamsQuery,
-  TriviaAnswerSnippetFragment,
-} from "../../../../graphql/generated/graphql";
+import { TriviaAnswerSnippetFragment } from "../../../../graphql/generated/graphql";
 
 interface TriviaAnswerProps {
   triviaAnswers: TriviaAnswerSnippetFragment[];

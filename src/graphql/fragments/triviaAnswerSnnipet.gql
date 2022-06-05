@@ -1,4 +1,4 @@
-fragment TriviaAnswerSnippet on Answer {
+fragment TriviaAnswerSnippet on TriviasAnswer {
   id
   created_at
   updated_at

@@ -1,0 +1,7 @@
+fragment SubjectSnnipet on Subject {
+  id
+  name
+  isPremium
+  created_at
+  updated_at
+}

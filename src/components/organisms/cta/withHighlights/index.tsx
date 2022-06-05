@@ -1,5 +1,6 @@
 import { Flex, Heading, Button } from "@chakra-ui/react";
 import { HighlightDefault } from "../../../molecules/highlight/default";
+import { motion } from "framer-motion";
 
 interface CTAWithHighlightsProps {
   ctaHandleButton: () => void;
@@ -36,6 +37,9 @@ export const CTAWithHighlights: React.FC<CTAWithHighlightsProps> = ({
         {title}
       </Heading>
       <Button
+        as={motion.button}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         isLoading={btnIsLoading}
         onClick={ctaHandleButton}
         variant="primaryOutline"

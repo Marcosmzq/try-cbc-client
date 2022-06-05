@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Center } from "@chakra-ui/react";
 import { HeroContentDefault } from "../../../molecules/hero-content/default";
 import Image from "next/image";
 
@@ -9,6 +9,7 @@ interface HeroWithImgProps {
   heroHandleBtn: () => void;
   heroImgSrc: string;
   heroImgAlt: string;
+  showHeroInRow: boolean;
 }
 
 export const HeroWithImg: React.FC<HeroWithImgProps> = ({
@@ -18,20 +19,25 @@ export const HeroWithImg: React.FC<HeroWithImgProps> = ({
   heroHandleBtn,
   heroImgSrc,
   heroImgAlt,
+  showHeroInRow,
 }) => {
   return (
     <Flex
-      flexDir={["column", "row"]}
+      flexDir={showHeroInRow ? ["column", "row"] : "column"}
       align="center"
       justify="center"
       minH="100vh"
+      m={2}
+      p={2}
     >
-      <HeroContentDefault
-        heroTitle={heroTitle}
-        heroDesc={heroDesc}
-        heroBtnText={heroBtnText}
-        heroHandleBtn={heroHandleBtn}
-      />
+      <Center my={[8, 12]}>
+        <HeroContentDefault
+          heroTitle={heroTitle}
+          heroDesc={heroDesc}
+          heroBtnText={heroBtnText}
+          heroHandleBtn={heroHandleBtn}
+        />
+      </Center>
       <Image width="540px" height="480px" src={heroImgSrc} alt={heroImgAlt} />
     </Flex>
   );

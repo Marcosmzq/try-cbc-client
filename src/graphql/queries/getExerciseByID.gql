@@ -4,5 +4,8 @@ query GetExerciseByID($id: Int!) {
     answers {
       ...TriviaAnswerSnippet
     }
+    subject {
+      ...SubjectSnnipet
+    }
   }
 }

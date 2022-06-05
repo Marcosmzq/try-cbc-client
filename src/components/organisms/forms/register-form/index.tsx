@@ -1,11 +1,12 @@
 import { Button, VStack, Divider } from "@chakra-ui/react";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../context/userAuth";
 import { useRegisterMutation } from "../../../../graphql/generated/graphql";
 import { emailRegExp } from "../../../../utils/regExp";
 import { DisplayGraphQLErrorDefault } from "../../../molecules/display-error/graphql-error/default";
 import { FormFieldInput } from "../../../molecules/form-field/input";
+import { motion } from "framer-motion";
 
 type FormData = {
   email: string;
@@ -125,6 +126,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
           })}
         />
         <Button
+          as={motion.button}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           w={["100%", "sm"]}
           variant="primarySolid"
           isLoading={isSubmitting}

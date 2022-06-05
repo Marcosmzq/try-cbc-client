@@ -6,6 +6,7 @@ interface UserHeaderDefaultProps {
   desc: string;
   username: string;
   userRole: string;
+  userID: number;
 }
 
 export const UserHeaderDefault: React.FC<UserHeaderDefaultProps> = ({
@@ -13,10 +14,12 @@ export const UserHeaderDefault: React.FC<UserHeaderDefaultProps> = ({
   desc,
   username,
   userRole,
+  userID,
 }) => {
   return (
     <Flex py={[6, 12]} justify="center" align="center" flexDir="column">
-      <Text variant="badge">{userRole} </Text>
+      <Text variant="badge">ID: {userID} </Text>
+      <Text variant="badge">ROL: {userRole} </Text>
       <Avatar my={4} w="100px" h="100px" name={username} />
       <SectionHeaderDefault title={title} desc={desc} />
     </Flex>

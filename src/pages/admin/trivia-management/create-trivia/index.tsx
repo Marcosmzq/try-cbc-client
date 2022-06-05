@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { CreateTriviaFormDefault } from "../../../../components/organisms/forms/trivia-forms/create-trivia/default";
 import { useCheckUserIsOnline } from "../../../../hooks/useCheckUserIsOnline";
 import { Container } from "@chakra-ui/react";

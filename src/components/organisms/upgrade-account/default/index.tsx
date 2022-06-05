@@ -48,7 +48,7 @@ export const UpgradeAccountDefault: React.FC<UpgradeAccountDefaultProps> = ({
             <AlertBigDefault
               alertStatus="error"
               alertTitle="Algo ha salido mal"
-              alertDesc="No hemos podido comprobar que el pago este aprobado,volve a entrar a esta página en un rato para intentar nuevamente, si queres podés enviarnos un mail y contarnos lo sucedido. trycbc@gmail.com "
+              alertDesc="No hemos podido comprobar que el pago este aprobado, guarda el link de esta página e ingresa nuevamente en un rato. Si continuas con problemas contactanos. trycbc@gmail.com "
             />
           )}
         </Center>

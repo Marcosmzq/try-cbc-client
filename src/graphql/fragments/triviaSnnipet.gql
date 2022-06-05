@@ -4,6 +4,7 @@ fragment TriviaSnippet on Trivia {
   updated_at
   statement
   exam
-  subject
+  source
+  type
   feedback
 }

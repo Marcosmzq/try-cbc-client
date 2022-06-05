@@ -1,12 +1,12 @@
 import { Flex, HStack, Text, Divider } from "@chakra-ui/react";
 import {
   ExamList,
-  GetRandomTriviaBySubjectQuery,
+  GetRandomTriviaByParamsQuery,
 } from "../../../../graphql/generated/graphql";
 import { DialogModal } from "../../modal/dialog";
 
 interface TriviaHeaderProps {
-  triviaExercise: GetRandomTriviaBySubjectQuery;
+  triviaExercise: GetRandomTriviaByParamsQuery;
   modalText: string;
   modalOpenBtnText: string;
   modalHeader: string;
@@ -24,16 +24,16 @@ export const TriviaHeader: React.FC<TriviaHeaderProps> = ({
       <Flex flexDir={["column", "row"]} align="center" justify="space-between">
         <HStack spacing={4}>
           <Text variant="badge">
-            {triviaExercise.getRandomTriviaBySubject.subject}
+            {triviaExercise.getRandomTriviaByParams.subject.name}
           </Text>
-          {/*  <Text variant="badge">
+          <Text variant="badge">
             {triviaExercise.getRandomTriviaByParams.exam === ExamList.First &&
               "primer parcial"}
             {triviaExercise.getRandomTriviaByParams.exam === ExamList.Second &&
               "segundo parcial"}
             {triviaExercise.getRandomTriviaByParams.exam === ExamList.Final &&
               "parcial final"}
-          </Text> */}
+          </Text>
         </HStack>
         <DialogModal
           buttonText={modalOpenBtnText}

@@ -1,13 +1,9 @@
 import Head from "next/head";
 import { ExerciseDefaultTemplate } from "../../components/templates/exercises/default";
 import { NextPage } from "next";
-import {
-  SubjectList,
-  useGetRandomTriviaBySubjectLazyQuery,
-} from "../../graphql/generated/graphql";
+import { useGetRandomTriviaByParamsLazyQuery } from "../../graphql/generated/graphql";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useCheckUserIsOnline } from "../../hooks/useCheckUserIsOnline";
 import { Center, Spinner } from "@chakra-ui/react";
 import { DisplayGraphQLErrorDefault } from "../../components/molecules/display-error/graphql-error/default";
 import { NetworkStatus } from "@apollo/client";
@@ -15,17 +11,14 @@ import { NetworkStatus } from "@apollo/client";
 const ExercisePage: NextPage = () => {
   const [mutationErrors, setMutationErrors] = useState([]);
   const router = useRouter();
-  const { subject, format } = router.query;
-  const { user } = useCheckUserIsOnline({
-    redirectTo: "/login",
-    checkUserStatusType: "ONLINE",
-  });
+  const { subjectID, format } = router.query;
 
   const [getTrivia, { data, loading, error, refetch, networkStatus }] =
-    useGetRandomTriviaBySubjectLazyQuery({
+    useGetRandomTriviaByParamsLazyQuery({
       variables: {
+        subjectID: subjectID ? parseInt(subjectID as string) : null,
         //@ts-ignore
-        subject,
+        triviaType: format,
       },
       onError(err) {
         setMutationErrors([err.message]);
@@ -34,8 +27,8 @@ const ExercisePage: NextPage = () => {
     });
 
   useEffect(() => {
-    if (subject) getTrivia();
-  }, [subject]);
+    if (subjectID && format) getTrivia();
+  }, [subjectID, format]);
   return (
     <>
       <Head>

@@ -1,11 +1,11 @@
 import { Box, Button, Center, useBoolean, Heading } from "@chakra-ui/react";
-import { GetRandomTriviaBySubjectQuery } from "../../../../../graphql/generated/graphql";
+import { GetRandomTriviaByParamsQuery } from "../../../../../graphql/generated/graphql";
 import { TriviaAnswer } from "../../../../molecules/trivia-content/trivia-answer";
 import { TriviaBody } from "../../../../molecules/trivia-content/trivia-body";
 import { TriviaHeader } from "../../../../molecules/trivia-content/trivia-header";
 
 interface TriviaFlashcardDefaultProps {
-  triviaExercise: GetRandomTriviaBySubjectQuery;
+  triviaExercise: GetRandomTriviaByParamsQuery;
   refetchExercise: () => void;
 }
 
@@ -14,7 +14,7 @@ export const TriviaFlashcardDefault: React.FC<TriviaFlashcardDefaultProps> = ({
   refetchExercise,
 }) => {
   const { statement, feedback, answers } =
-    triviaExercise.getRandomTriviaBySubject;
+    triviaExercise.getRandomTriviaByParams;
   const [showAnswer, setShowAnswer] = useBoolean(false);
   return (
     <Box>
