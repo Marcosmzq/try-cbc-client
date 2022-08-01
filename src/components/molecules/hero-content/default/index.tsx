@@ -1,38 +1,68 @@
 import { Flex, Text, Heading, Button, Box } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { ArrowRightIcon } from "@chakra-ui/icons";
 
 interface HeroContentDefaultProps {
-  heroTitle: string;
+  heroTitleBeforeHighlightWord: string;
+  heroHighlightTitleWord: string;
+  heroTitleAfterHighlightWord: string;
   heroDesc: string;
   heroBtnText: string;
   heroHandleBtn: () => void;
 }
 
 export const HeroContentDefault: React.FC<HeroContentDefaultProps> = ({
-  heroTitle,
+  heroTitleBeforeHighlightWord,
+  heroHighlightTitleWord,
+  heroTitleAfterHighlightWord,
   heroDesc,
   heroBtnText,
   heroHandleBtn,
 }) => {
   return (
-    <Flex w={["100%", "70%"]} minH="356px">
-      <Box>
-        <Heading p={1} textAlign={["start", "center"]} as="h1" variant="h1">
-          {heroTitle}
-        </Heading>
-        <Text p={2} variant="lead1" my={4}>
-          {heroDesc}
-        </Text>
-        <Button
-          isFullWidth
-          onClick={heroHandleBtn}
-          size="lg"
-          variant="primarySolid"
-          my={4}
-          p={1}
+    <Flex
+      w={["100%", "70%"]}
+      minH="356px"
+      flexDir="column"
+      justify="center"
+      align="center"
+    >
+      <Heading p={1} textAlign="center" as="h1" variant="h1">
+        {heroTitleBeforeHighlightWord}
+        <Heading
+          as="h1"
+          variant="h1"
+          display="inline-block"
+          bg="yellow.200"
+          rounded="full"
+          px={2}
+          py={1}
         >
-          {heroBtnText}
-        </Button>
-      </Box>
+          {heroHighlightTitleWord}
+        </Heading>
+        {heroTitleAfterHighlightWord}
+      </Heading>
+      <Text
+        textAlign="center"
+        variant="subtitle2"
+        p={2}
+        my={4}
+        w={["100%", "60ch"]}
+        wordBreak="break-word"
+      >
+        {heroDesc}
+      </Text>
+      <Button
+        as={motion.button}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={heroHandleBtn}
+        size="lg"
+        variant="primarySolid"
+        rightIcon={<ArrowRightIcon />}
+      >
+        {heroBtnText}
+      </Button>
     </Flex>
   );
 };

@@ -3,7 +3,9 @@ import { HeroContentDefault } from "../../../molecules/hero-content/default";
 import Image from "next/image";
 
 interface HeroWithImgProps {
-  heroTitle: string;
+  heroTitleBeforeHighlightWord: string;
+  heroHighlightTitleWord: string;
+  heroTitleAfterHighlightWord: string;
   heroDesc: string;
   heroBtnText: string;
   heroHandleBtn: () => void;
@@ -13,7 +15,9 @@ interface HeroWithImgProps {
 }
 
 export const HeroWithImg: React.FC<HeroWithImgProps> = ({
-  heroTitle,
+  heroTitleBeforeHighlightWord,
+  heroHighlightTitleWord,
+  heroTitleAfterHighlightWord,
   heroBtnText,
   heroDesc,
   heroHandleBtn,
@@ -32,7 +36,9 @@ export const HeroWithImg: React.FC<HeroWithImgProps> = ({
     >
       <Center my={[8, 12]}>
         <HeroContentDefault
-          heroTitle={heroTitle}
+          heroTitleBeforeHighlightWord={heroTitleBeforeHighlightWord}
+          heroHighlightTitleWord={heroHighlightTitleWord}
+          heroTitleAfterHighlightWord={heroTitleAfterHighlightWord}
           heroDesc={heroDesc}
           heroBtnText={heroBtnText}
           heroHandleBtn={heroHandleBtn}

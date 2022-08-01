@@ -13,7 +13,9 @@ export const LandingPageDefaultTemplate: React.FC<
   return (
     <>
       <HeroWithImg
-        heroTitle="¡Estudiá menos, aprende más!"
+        heroTitleBeforeHighlightWord="Nothing great is"
+        heroHighlightTitleWord="made alone"
+        heroTitleAfterHighlightWord="let us accompany you."
         heroDesc="tryCBC es una heramienta para el CBC de la UBA que ofrece una innovadora forma en la que podés estudiar, logrando que en menos tiempo aprendas más."
         heroBtnText="empezar ya"
         heroHandleBtn={() => router.push("/home")}
