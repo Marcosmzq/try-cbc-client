@@ -6,7 +6,7 @@ export const Text = {
       lineHeight: "28px",
     },
     subtitle2: {
-      fontWeight: "medium",
+      fontWeight: "semibold",
       fontSize: "lg",
       lineHeight: "28px",
     },
