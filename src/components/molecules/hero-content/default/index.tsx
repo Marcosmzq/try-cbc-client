@@ -27,6 +27,9 @@ export const HeroContentDefault: React.FC<HeroContentDefaultProps> = ({
       justify="center"
       align="center"
     >
+      <Text variant="badge" bg="yellow.200" color="black" rounded="full" p={3}>
+        For students by students
+      </Text>
       <Heading p={1} textAlign="center" as="h1" variant="h1">
         {heroTitleBeforeHighlightWord}
         <Heading
