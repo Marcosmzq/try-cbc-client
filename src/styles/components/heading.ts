@@ -3,7 +3,7 @@ export const Heading = {
     h1: {
       fontWeight: "extrabold",
       fontSize: ["5xl", "6xl", "7xl"],
-      lineHeight: ["64px", "72px", "98px"],
+      lineHeight: ["64px", "72px", "92px"],
     },
     h2: {
       fontWeight: "extrabold",
