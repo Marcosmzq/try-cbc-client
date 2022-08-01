@@ -1,7 +1,8 @@
-import { Flex, IconButton, useBoolean } from "@chakra-ui/react";
+import { Flex, IconButton, useBoolean, Button, HStack } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { HeaderLogo } from "../../../molecules/header-item/HeaderLogo";
 import { ActiveHeaderMenuDefault } from "../../../molecules/active-header-menu/default";
+import { motion } from "framer-motion";
 
 interface HeaderWithMenuProps {}
 
@@ -10,15 +11,34 @@ export const HeaderWithMenu: React.FC<HeaderWithMenuProps> = () => {
   return (
     <>
       <Flex
-        borderBottom="1px"
-        borderColor="gray.200"
+        as="nav"
         align="center"
         justify="space-between"
-        py={6}
-        px={[8, 16]}
+        px={[12, 24]}
+        py={[6, 12]}
       >
         <HeaderLogo />
+        <HStack spacing={4} display={["none", "none", "block"]}>
+          <Button
+            as={motion.button}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            variant="primaryOutline"
+          >
+            Iniciar sesion
+          </Button>
+          <Button
+            as={motion.button}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            variant="primarySolid"
+          >
+            Crear cuenta
+          </Button>
+        </HStack>
+
         <IconButton
+          display={["block", "block", "none"]}
           colorScheme="black"
           variant="outline"
           size="lg"
