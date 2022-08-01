@@ -1,10 +1,11 @@
 export const Button = {
   baseStyle: {
     fontFamily: "heading",
-    fontWeight: "bold",
+    fontWeight: "black",
     textTransform: "uppercase",
     borderRadius: "none",
     letterSpacing: "widest",
+    rounded: "sm",
   },
   variants: {
     primarySolid: {
