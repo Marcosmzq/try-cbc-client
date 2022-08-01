@@ -1,6 +1,5 @@
-import { Flex, Center } from "@chakra-ui/react";
+import { Flex, Center, Image } from "@chakra-ui/react";
 import { HeroContentDefault } from "../../../molecules/hero-content/default";
-import Image from "next/image";
 
 interface HeroWithImgProps {
   heroTitleBeforeHighlightWord: string;
@@ -9,9 +8,12 @@ interface HeroWithImgProps {
   heroDesc: string;
   heroBtnText: string;
   heroHandleBtn: () => void;
-  heroImgSrc: string;
-  heroImgAlt: string;
-  showHeroInRow: boolean;
+  heroImgOnLgScreenSrc: string;
+  heroImgAltOnLgScreenSrc: string;
+  heroFirstImgOnSmScreenSrc: string;
+  heroFirstImgAltOnSmScreenSrc: string;
+  heroSecondImgOnSmScreenSrc: string;
+  heroSecondImgAltOnSmScreenSrc: string;
 }
 
 export const HeroWithImg: React.FC<HeroWithImgProps> = ({
@@ -21,13 +23,16 @@ export const HeroWithImg: React.FC<HeroWithImgProps> = ({
   heroBtnText,
   heroDesc,
   heroHandleBtn,
-  heroImgSrc,
-  heroImgAlt,
-  showHeroInRow,
+  heroImgOnLgScreenSrc,
+  heroImgAltOnLgScreenSrc,
+  heroFirstImgOnSmScreenSrc,
+  heroFirstImgAltOnSmScreenSrc,
+  heroSecondImgOnSmScreenSrc,
+  heroSecondImgAltOnSmScreenSrc,
 }) => {
   return (
     <Flex
-      flexDir={showHeroInRow ? ["column", "row"] : "column"}
+      flexDir="column"
       align="center"
       justify="center"
       minH="100vh"
@@ -44,7 +49,34 @@ export const HeroWithImg: React.FC<HeroWithImgProps> = ({
           heroHandleBtn={heroHandleBtn}
         />
       </Center>
-      <Image width="540px" height="480px" src={heroImgSrc} alt={heroImgAlt} />
+
+      <Image
+        width="100vw"
+        height="100vh"
+        objectFit="fill"
+        objectPosition="center"
+        display={["none", "none", "block"]}
+        src={heroImgOnLgScreenSrc}
+        alt={heroImgAltOnLgScreenSrc}
+      />
+      <Image
+        width="100vw"
+        height="100vh"
+        objectFit="fill"
+        objectPosition="center"
+        display={["block", "none"]}
+        src={heroFirstImgOnSmScreenSrc}
+        alt={heroFirstImgAltOnSmScreenSrc}
+      />
+      <Image
+        width="100vw"
+        height="100vh"
+        objectFit="fill"
+        objectPosition="center"
+        display={["block", "none"]}
+        src={heroSecondImgOnSmScreenSrc}
+        alt={heroSecondImgAltOnSmScreenSrc}
+      />
     </Flex>
   );
 };
