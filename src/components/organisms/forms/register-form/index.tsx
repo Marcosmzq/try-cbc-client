@@ -2,7 +2,7 @@ import { Button, VStack, Divider } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../context/userAuth";
-import { useRegisterMutation } from "../../../../graphql/generated/graphql";
+import { useSignupMutation } from "../../../../graphql/generated/graphql";
 import { emailRegExp } from "../../../../utils/regExp";
 import { DisplayGraphQLErrorDefault } from "../../../molecules/display-error/graphql-error/default";
 import { FormFieldInput } from "../../../molecules/form-field/input";
@@ -28,7 +28,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
     getValues,
   } = useForm<FormData>();
 
-  const [registerMutation, { data }] = useRegisterMutation({
+  const [signupMutation, { data }] = useSignupMutation({
     variables: {
       username: getValues().username,
       email: getValues().email,
@@ -42,11 +42,11 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
 
   const onSubmit = async () => {
     setMutationErrors([]);
-    await registerMutation();
+    await signupMutation();
     reset();
   };
   useEffect(() => {
-    if (data) login(data.createUser);
+    if (data) login(data.registerUser.access_token);
   }, [data]);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

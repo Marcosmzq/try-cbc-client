@@ -31,9 +31,9 @@ export const ActiveHeaderMenuDefault: React.FC<
           navLinkItems={
             user
               ? [
-                  { text: "Inicio", href: "/home", onClick: closeMenu },
+                  { text: "Cursos", href: "/courses", onClick: closeMenu },
                   {
-                    text: "Perfil",
+                    text: "Configuración",
                     href: `/profile`,
                     onClick: closeMenu,
                   },
@@ -44,9 +44,9 @@ export const ActiveHeaderMenuDefault: React.FC<
                   },
                 ]
               : [
-                  { text: "Inicio", href: "/", onClick: closeMenu },
+                  { text: "Cursos", href: "/courses", onClick: closeMenu },
                   {
-                    text: "Premiun",
+                    text: "Precio",
                     href: `/premium`,
                     onClick: closeMenu,
                   },

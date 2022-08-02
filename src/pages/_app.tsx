@@ -15,7 +15,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ChakraProvider resetCSS theme={theme}>
           <HeaderWithMenu />
           <Component {...pageProps} />
-          <Image mt={8} src="/assets/waves.svg" alt="Waves svg" width="100%" />
           <FooterMini />
         </ChakraProvider>
       </AuthProvider>

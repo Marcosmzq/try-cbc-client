@@ -1,3 +1,0 @@
-mutation GetCheckoutInitPoint($userID: Float!) {
-  getInitPoint(userID: $userID)
-}

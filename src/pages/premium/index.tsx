@@ -4,17 +4,21 @@ import { useCheckUserIsOnline } from "../../hooks/useCheckUserIsOnline";
 import { Center, Spinner } from "@chakra-ui/react";
 
 const PremiumBenefitsInfoPage = () => {
-  const { user } = useCheckUserIsOnline({
+  /* const { user } = useCheckUserIsOnline({
     redirectTo: "/login",
     checkUserStatusType: "ONLINE",
-  });
-
+  }); */
+  {
+    /*CTA FIRST WITH DESC > The tools you need to build products your customers love
+     */
+  }
   return (
     <>
       <Head>
         <title>tryCBC - Premium</title>
       </Head>
-      {user && <PremiumBenefitsInfoTemplate userID={parseInt(user.id)} />}
+      <PremiumBenefitsInfoTemplate userID={0} />
+      {/*    {user && <PremiumBenefitsInfoTemplate userID={parseInt(user.id)} />} */}
     </>
   );
 };

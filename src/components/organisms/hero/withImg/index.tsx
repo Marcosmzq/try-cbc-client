@@ -2,6 +2,7 @@ import { Flex, Center, Image } from "@chakra-ui/react";
 import { HeroContentDefault } from "../../../molecules/hero-content/default";
 
 interface HeroWithImgProps {
+  heroBadgeText: string;
   heroTitleBeforeHighlightWord: string;
   heroHighlightTitleWord: string;
   heroTitleAfterHighlightWord: string;
@@ -17,6 +18,7 @@ interface HeroWithImgProps {
 }
 
 export const HeroWithImg: React.FC<HeroWithImgProps> = ({
+  heroBadgeText,
   heroTitleBeforeHighlightWord,
   heroHighlightTitleWord,
   heroTitleAfterHighlightWord,
@@ -41,6 +43,7 @@ export const HeroWithImg: React.FC<HeroWithImgProps> = ({
     >
       <Center my={[8, 12]}>
         <HeroContentDefault
+          heroBadgeText={heroBadgeText}
           heroTitleBeforeHighlightWord={heroTitleBeforeHighlightWord}
           heroHighlightTitleWord={heroHighlightTitleWord}
           heroTitleAfterHighlightWord={heroTitleAfterHighlightWord}

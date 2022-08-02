@@ -1,6 +1,5 @@
-import { Flex, Center } from "@chakra-ui/react";
+import { Flex, Center, Image, Grid, GridItem } from "@chakra-ui/react";
 import { FeatureCardWithIcon } from "../../../../molecules/feature-card/withIcon";
-import Image from "next/image";
 
 interface FeatureSingleWithImgProps {
   featureTitle: string;
@@ -16,11 +15,24 @@ export const FeatureSingleWithImg: React.FC<FeatureSingleWithImgProps> = ({
   imgSrc,
 }) => {
   return (
-    <Flex justify="center" align="center" flexDir={["column", "row"]}>
-      <Center mx={8} p={4} w={["100%", "540px"]} borderRadius="8px">
-        <Image width="360px" height="540px" alt={imgAlt} src={imgSrc} />
-      </Center>
-      <FeatureCardWithIcon title={featureTitle} desc={featureDesc} />
-    </Flex>
+    <Grid
+      w="100%"
+      templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(5, 1fr)"]}
+      px={[6, 12, 16]}
+      my={12}
+    >
+      <GridItem colSpan={[1, 1, 2]}>
+        <FeatureCardWithIcon title={featureTitle} desc={featureDesc} />
+      </GridItem>
+      <GridItem colSpan={[1, 1, 3]}>
+        <Image
+          boxSize="full"
+          objectFit="fill"
+          objectPosition="center"
+          alt={imgAlt}
+          src={imgSrc}
+        />
+      </GridItem>
+    </Grid>
   );
 };

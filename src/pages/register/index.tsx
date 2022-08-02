@@ -4,7 +4,7 @@ import { useCheckUserIsOnline } from "../../hooks/useCheckUserIsOnline";
 
 const RegisterPage = () => {
   const { user } = useCheckUserIsOnline({
-    redirectTo: "/home",
+    redirectTo: "/courses",
     checkUserStatusType: "OFFLINE",
   });
 
@@ -13,13 +13,17 @@ const RegisterPage = () => {
       <Head>
         <title>tryCBC - Register</title>
       </Head>
-      <RegisterOrLoginTemplateWithImg
-        sectionHeaderTitle="Crear cuenta fácil, rápido y totalmente gratis"
-        sectionHeaderDesc="Crear una cuenta es un proceso muy sencillo, solo completa el formulario y listo."
-        loginOrRegister="register"
-        imgAlt="Mobile login"
-        imgSrc="/images/undraw_mobile_login.svg"
-      />
+      {!user && (
+        <RegisterOrLoginTemplateWithImg
+          titleBeforeHighlightWord="Estas a un paso de"
+          highlightTitleWord="descubrir"
+          titleAfterHighlightWord="una manera más fácil de aprobar."
+          sectionHeaderDesc="El tiempo no es valioso, es muy valioso. Con tryCBC vas a ganar muchisimo tiempo y vas a aprobar más fácil."
+          loginOrRegister="register"
+          imgAlt="Mobile login"
+          imgSrc="/images/undraw_mobile_login.svg"
+        />
+      )}
     </>
   );
 };

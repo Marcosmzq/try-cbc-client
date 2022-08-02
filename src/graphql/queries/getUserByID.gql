@@ -1,5 +1,0 @@
-query GetUserByID($id: Int!) {
-  findUserByID(id: $id) {
-    ...UserSnippet
-  }
-}

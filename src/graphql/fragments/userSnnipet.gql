@@ -1,8 +1,8 @@
-fragment UserSnippet on User {
+fragment UserSnnipet on User {
   id
-  username
-  email
   created_at
   updated_at
+  username
+  email
   role
 }

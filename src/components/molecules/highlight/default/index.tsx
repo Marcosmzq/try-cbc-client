@@ -8,8 +8,8 @@ interface HighlightDefaultProps {
 export const HighlightDefault: React.FC<HighlightDefaultProps> = ({ text }) => {
   return (
     <Flex align="center" justify="center">
-      <StarIcon w="18px" h="26px" />
-      <Text px={4} variant="body2" color="white">
+      <StarIcon w="18px" h="26px" color="black" />
+      <Text px={4} variant="subtitle2" color="white">
         {text}
       </Text>
     </Flex>

@@ -6,8 +6,8 @@ import { Button } from "./components/button";
 export const theme = extendTheme({
   colors: {
     primary: "#FF0080",
-    secondary: "#FFADAD",
-    terceary: "#F09893",
+    secondary: "#485BFF",
+    terceary: "#485BFF",
   },
   fonts: {
     heading: "Inter",

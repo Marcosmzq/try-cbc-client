@@ -38,5 +38,16 @@ export const Text = {
       textTransform: "uppercase",
       letterSpacing: "2px",
     },
+    badgeWithBg: {
+      bg: "yellow.200",
+      color: "black",
+      rounded: "full",
+      p: 3,
+      letterSpacing: "2px",
+      textTransform: "uppercase",
+      fontWeight: "extrabold",
+      fontSize: "md",
+      lineHeight: "26px",
+    },
   },
 };

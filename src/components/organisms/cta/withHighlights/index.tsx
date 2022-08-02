@@ -22,7 +22,7 @@ export const CTAWithHighlights: React.FC<CTAWithHighlightsProps> = ({
   return (
     <Flex
       minH="466px"
-      bg="primary"
+      bg="secondary"
       justify="center"
       align="center"
       flexDir="column"
@@ -33,6 +33,7 @@ export const CTAWithHighlights: React.FC<CTAWithHighlightsProps> = ({
         variant="h2"
         w={["100%", "100%", "730px"]}
         textAlign="center"
+        color="white"
       >
         {title}
       </Heading>
@@ -42,9 +43,10 @@ export const CTAWithHighlights: React.FC<CTAWithHighlightsProps> = ({
         whileTap={{ scale: 0.9 }}
         isLoading={btnIsLoading}
         onClick={ctaHandleButton}
-        variant="primaryOutline"
+        variant="secondaryOutline"
         my={8}
         w={["100%", "auto"]}
+        size="lg"
       >
         {btnText}
       </Button>
@@ -53,7 +55,7 @@ export const CTAWithHighlights: React.FC<CTAWithHighlightsProps> = ({
         my={6}
         w="100%"
         flexDir={["column", "column", "row"]}
-        justify="space-around"
+        justify="space-evenly"
         align={["flex-start", "center"]}
       >
         {highlights.map(({ text }) => (

@@ -1,4 +1,4 @@
-import { Center, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Center, Divider, Heading, SimpleGrid, Box } from "@chakra-ui/react";
 import { TriviaType } from "../../../../../graphql/generated/graphql";
 import { SelectExerciseCard } from "../../../../molecules/select-exercise-card/default";
 
@@ -10,12 +10,16 @@ export const SelectExerciseFormat: React.FC<SelectExerciseFormatProps> = ({
   setExerciseFormat,
 }) => {
   return (
-    <>
-      <Center p={4}>
+    <Box p={[8, 12]} border="1px" borderColor="gray.200">
+      <Center flexDir="column">
+        <Heading as="h2" variant="h2" my={6}>
+          Para comenzar a practicar con ejercicios
+        </Heading>
         <Heading as="h3" variant="h3">
           Selecciona un formato para los ejercicios
         </Heading>
       </Center>
+      <Divider border="1px" borderColor="gray.200" my={4} />
       <SimpleGrid p={4} columns={[1, 2]} gap={4}>
         <SelectExerciseCard
           isFreeContent={true}
@@ -34,6 +38,6 @@ export const SelectExerciseFormat: React.FC<SelectExerciseFormatProps> = ({
           desc="Entrena tu memoria en este formato. Vas a ver una tarjeta con una pregunta y tenes que pensar la respuesta, cuando este listo voltea la tarjeta y observa la respuesta correcta. ¡Intenta pensar la respuesta correcta!"
         />
       </SimpleGrid>
-    </>
+    </Box>
   );
 };

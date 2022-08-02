@@ -1,8 +1,9 @@
-import { Flex, Text, Heading, Button, Box } from "@chakra-ui/react";
+import { Flex, Text, Heading, Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@chakra-ui/icons";
 
 interface HeroContentDefaultProps {
+  heroBadgeText: string;
   heroTitleBeforeHighlightWord: string;
   heroHighlightTitleWord: string;
   heroTitleAfterHighlightWord: string;
@@ -12,6 +13,7 @@ interface HeroContentDefaultProps {
 }
 
 export const HeroContentDefault: React.FC<HeroContentDefaultProps> = ({
+  heroBadgeText,
   heroTitleBeforeHighlightWord,
   heroHighlightTitleWord,
   heroTitleAfterHighlightWord,
@@ -26,10 +28,9 @@ export const HeroContentDefault: React.FC<HeroContentDefaultProps> = ({
       flexDir="column"
       justify="center"
       align="center"
+      mb={12}
     >
-      <Text variant="badge" bg="yellow.200" color="black" rounded="full" p={3}>
-        For students by students
-      </Text>
+      <Text variant="badgeWithBg">{heroBadgeText}</Text>
       <Heading p={1} textAlign="center" as="h1" variant="h1">
         {heroTitleBeforeHighlightWord}
         <Heading

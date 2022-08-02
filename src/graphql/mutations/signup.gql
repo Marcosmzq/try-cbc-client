@@ -1,15 +1,20 @@
-mutation Register(
+mutation Signup(
   $username: String!
   $email: String!
   $password: String!
   $confirmPassword: String!
 ) {
-  createUser(
-    createUserInput: {
+  registerUser(
+    registerUserInput: {
       username: $username
       email: $email
       password: $password
       confirmPassword: $confirmPassword
     }
-  )
+  ) {
+    access_token
+    user {
+      ...UserSnnipet
+    }
+  }
 }
